@@ -5,10 +5,9 @@ const commands = express.Router();
 
 commands.post('/', (req, res) => {
     runScript(req.body.workdir, req.body.command).then(result => {
-        console.log(result);
-        res.send(result);
+        res.send({result: result});
     }, error => {
-        res.send(error.message)
+        res.status(500).send({error: error.message});
     });
 })
 

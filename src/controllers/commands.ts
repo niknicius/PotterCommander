@@ -6,7 +6,7 @@ export async function runScript(workDir: string, command: string): Promise<{}>{
             if (error) {
                 reject(error);
             }
-            resolve(stdout? stdout.toString() : stderr.toString());
+            stdout ? resolve(stdout) : reject(stderr);
         });
     });
 }
