@@ -2,11 +2,22 @@ import {exec} from 'child_process';
 
 export async function runScript(workDir: string, command: string): Promise<{}>{
     return new Promise((resolve, reject) => {
+
+        let stdobj = {
+            stdout: "",
+            stderr: "",
+            code: 0
+        };
+
         exec('cd ' + workDir + '&& ' + command, (error, stdout, stderr) => {
             if (error) {
-                reject(error);
+                stdobj.stderr = error.message;
+                stdobj.code = error.code;
+                reject(stdobj);
             }
-            stdout ? resolve(stdout) : reject(stderr);
-        });
+            stdobj.stdout = stdout;
+            stdobj.stderr = stderr;
+            resolve(stdobj);
+        })
     });
 }
