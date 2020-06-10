@@ -16,9 +16,9 @@ Make a POST request using the following JSON template
     "command": "pwd"
 }
 ```
-######Workdir is the base directory to run the command
+Workdir is the base directory to run the command
 
-######Command is the bash command
+Command is the bash command
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
